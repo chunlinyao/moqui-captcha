@@ -1,5 +1,11 @@
 package com.moshi.impl.captcha
 
+import com.octo.captcha.engine.image.fisheye.SimpleFishEyeEngine
+import com.octo.captcha.engine.image.gimpy.BaffleListGimpyEngine
+import com.octo.captcha.engine.image.gimpy.DeformedBaffleListGimpyEngine
+import com.octo.captcha.engine.image.gimpy.HotmailEngine
+import com.octo.captcha.engine.image.gimpy.HotmailEngine2008
+import com.octo.captcha.engine.image.gimpy.NonLinearTextGimpyEngine
 import com.octo.captcha.service.CaptchaServiceException
 import com.octo.captcha.service.image.DefaultManageableImageCaptchaService
 import com.octo.captcha.service.image.ImageCaptchaService
@@ -10,7 +16,11 @@ import org.slf4j.LoggerFactory
 class CaptchaServiceSingleton {
     protected final static Logger logger = LoggerFactory.getLogger(CaptchaServiceSingleton.class)
 
-    private static ImageCaptchaService instance = new DefaultManageableImageCaptchaService()
+    private static ImageCaptchaService instance;
+    static {
+        instance = new DefaultManageableImageCaptchaService();
+        instance.setCaptchaEngine(new MyEngine());
+    }
 
     static ImageCaptchaService getInstance() {
         return instance

@@ -25,15 +25,14 @@ dependencyUpdates.resolutionStrategy = {
 repositories {
     flatDir name: 'frameworkLib', dirs: frameworkDir.absolutePath + '/lib'
 //    flatDir name: 'localLib', dirs: projectDir.absolutePath + '/lib'
-    jcenter()
-    maven { url "https://packages.atlassian.com/maven-3rdparty/" }
+    mavenCentral()
 }
 
 dependencies {
     compile project(':framework')
     compile group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
-    compile group: 'com.octo.captcha', name: 'jcaptcha-api', version: '2.0-alpha-1'
-    compile group: 'com.octo.captcha', name: 'jcaptcha', version: '2.0-alpha-1'
+    compile group: 'io.leopard.thirdparty', name: 'jcaptcha-api', version: '2.0.0'
+    compile group: 'io.leopard.thirdparty', name: 'jcaptcha-core', version: '2.0.0'
     testCompile project(':framework').configurations.testCompile.allDependencies
 }
 
